@@ -5,4 +5,4 @@
     ) 
 }}
 
-SELECT * FRO {{ source('dataverse', 'account') }}
+SELECT * FROM {{ source('dataverse', 'account') }}
