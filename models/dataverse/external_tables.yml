@@ -1,0 +1,85 @@
+# Creates query given below
+
+version: 2
+
+sources:
+  - name: dataverse
+    schema: crm_dataverse
+    loader: ADLSblob
+    tables:
+      - name: account
+        description: |
+          from raw DW.
+        external:
+        # Delimited Files in Blob/Lake
+          # External Data Source name (created prior)
+          data_source: dataverse_devdbtsyn # made with TYPE= 'HADOOP'
+          location: account/WPP2022_DeathsBySingleAgeSex_Medium_1950-2021.csv # path on above data source
+          # External File Format name (created prior)
+          file_format: csv_delimited_w_o_headers 
+          #reject_type: VALUE
+          #reject_value: 0
+          #ansi_nulls: true
+          #quoted_identifier: true
+
+        # Cross database query (i.e. RDBMS) Azure SQL ONLY
+         # data_source: AEDW # made with TYPE= 'RDBMS'
+         # schema_name: Business
+          #object_name: LeadActivities
+
+        columns:
+          - name: C1 
+            data_type: nvarchar(4000)
+          - name: C2 
+            data_type: nvarchar(4000)
+          - name: C3 
+            data_type: nvarchar(4000)
+          - name: C4 
+            data_type: nvarchar(4000)
+          - name: C5 
+            data_type: nvarchar(4000)
+          - name: C6 
+            data_type: nvarchar(4000)
+          - name: C7
+            data_type: nvarchar(4000)
+          - name: C8
+            data_type: nvarchar(4000)
+          - name: C9
+            data_type: nvarchar(4000)
+          - name: C10 
+            data_type: nvarchar(4000)
+          - name: C11
+            data_type: nvarchar(4000)
+          - name: C12 
+            data_type: nvarchar(4000)
+          - name: C13
+            data_type: nvarchar(4000)
+          - name: C14
+            data_type: nvarchar(4000)
+          - name: C15 
+            data_type: nvarchar(4000)
+          - name: C16 
+            data_type: nvarchar(4000)
+          - name: C17
+            data_type: nvarchar(4000)
+          - name: C18
+            data_type: nvarchar(4000)
+          - name: C19
+            data_type: nvarchar(4000)
+          - name: C20
+            data_type: nvarchar(4000)
+
+# SET ANSI_NULLS ON;
+# SET QUOTED_IDENTIFIER ON;
+
+# CREATE EXTERNAL TABLE source.lead_activities
+# ( 
+#    id int  NOT NULL,
+#    leadId int  NOT NULL,
+#    activityDate varchar(255)  NOT NULL,
+#    activityTypeId int  NOT NULL,
+#    campaignId int  NOT NULL,
+#    primaryAttributeValueId int  NOT NULL,
+#    primaryAttributeValue varchar(255)  NOT NULL
+# )
+# WITH (DATA_SOURCE = SynapseContainer, LOCATION = N'/marketing/Marketo/LeadActivities/LeadActivities.csv', FILE_FORMAT = CommaDelimited, REJECT_TYPE = VALUE, REJECT_VALUE = 0 );
